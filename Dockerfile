@@ -5,4 +5,4 @@ ENV HOST2="172.17.0.2" USER2="postgres" PASSWORD2="mysecretpassword" PORT2="5432
 COPY package.json /app
 RUN npm install
 COPY . /app
-CMD sleep 2; node index.js
+CMD node index.js
