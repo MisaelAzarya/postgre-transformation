@@ -177,6 +177,7 @@ clientpg.connect(function(err){
                                 }).then(function(){
                                     if(skip==0)console.log("Done Input");
                                     else console.log("ALready have data in Table stg_superstore");
+                                    process.exit(0);
                                 });  
                             }   
                         })
