@@ -34,7 +34,8 @@ function promiseWhile(condition, body) {
 // const pgConString = "postgres://postgres:1234@localhost:5432/staging_ingestion";
 
 // untuk localhost dari docker
-const pgConString = "postgres://postgres:mysecretpassword@172.17.0.2:5432/staging_ingestion";
+// const pgConString = "postgres://postgres:mysecretpassword@172.17.0.2:5432/staging_ingestion";
+const pgConString = "postgres://"+process.env.USER+":"+process.env.PASSWORD+"@"+process.env.HOST+":"+process.env.PORT+"/"+process.env.DATABASE;
 
 var clientpg = new pg.Client(pgConString);
 
@@ -42,7 +43,8 @@ var clientpg = new pg.Client(pgConString);
 // const pgConString2 = "postgres://postgres:1234@localhost:5432/staging_transformation";
 
 // untuk localhost dari docker
-const pgConString2 = "postgres://postgres:mysecretpassword@172.17.0.2:5432/staging_transformation";
+// const pgConString2 = "postgres://postgres:mysecretpassword@172.17.0.2:5432/staging_transformation";
+const pgConString2 = "postgres://"+process.env.USER2+":"+process.env.PASSWORD2+"@"+process.env.HOST2+":"+process.env.PORT2+"/"+process.env.DATABASE2;
 
 var clientpg2 = new pg.Client(pgConString2);
 
@@ -58,6 +60,11 @@ clientpg.connect(function(err){
             else{
                 var offset = 0;
                 var count = 0;
+
+                var dropTable="DROP TABLE IF EXISTS stg_superstore";
+                clientpg.query(dropTable);
+                console.log("Drop Table stg_superstore");
+
                 var pgTable3 = "CREATE TABLE IF NOT EXISTS stg_superstore ("+
                         "row_id SERIAL PRIMARY KEY," +
                         "order_id VARCHAR(14)," +
