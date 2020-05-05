@@ -62,7 +62,7 @@ clientpg.connect(function(err){
                 var count = 0;
 
                 var dropTable="DROP TABLE IF EXISTS stg_superstore";
-                clientpg.query(dropTable);
+                clientpg2.query(dropTable);
                 console.log("Drop Table stg_superstore");
 
                 var pgTable3 = "CREATE TABLE IF NOT EXISTS stg_superstore ("+
