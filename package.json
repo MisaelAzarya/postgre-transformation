@@ -10,7 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "index.js": "0.0.3",
-    "pg": "^8.0.3",
+    "pg": "^8.11.0",
     "q": "^1.5.1"
   }
 }
